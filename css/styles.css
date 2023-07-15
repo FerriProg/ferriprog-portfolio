@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital@0;1&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Crimson Text', serif;
+  font-weight: 400;
+  background-color: rgb(43, 155, 189);
+}
+
+.customHeader {
+  height: 100vh;
+}
+
+.customShadow {
+  text-shadow: 3px 3px 3px black;
+}
+
+.navbar-light .navbar-nav .navLink2 {
+  color: white;
+  font-size: 1.5rem;
+  text-shadow: 3px 3px 3px black;
+}
+
+.navbar-light .navbar-nav .navLink2:hover {
+  color: rgb(105, 181, 243);
+  text-shadow: 3px 3px 3px black;
+}
+
+.backgroundModifier {
+  filter: brightness(30%);
+  height: 100%;
+}
+
+.aboutCustomHeight {
+  height: 88%;
+}
+
+.aboutChild {
+  padding-right: 5rem;
+  width: 75%;
+  height: 50%;
+}
+
+.textOverImage {
+  position: absolute;
+  top: 15rem;
+  right: 0;
+  bottom: 0;
+  left: 10%;
+  padding: 1rem;
+  justify-content: center;
+}
+
+.textOverImage h1 {
+  color: white;
+  text-align: center;
+  margin-bottom: 1rem;
+  text-shadow: 3px 3px 3px black;
+}
+
+.textOverImage p {
+  font-size: 1.5rem;
+  line-height: 1.5;
+  font-weight: 500;
+  color: white;
+  text-align: center;
+  margin-bottom: 1rem;
+  text-shadow: 3px 3px 3px black;
+}
+
+.projectSectionTitle {
+  font-size: 1.9rem;
+  line-height: 1.5;
+  font-weight: 500;
+  color: white;
+  text-align: center;
+
+  text-shadow: 3px 3px 3px black;
+}
+
+.customCardHeight {
+  height: 30rem;
+}
+
+.contactFont {
+  font-size: 1.4rem;
+  color: white;
+  text-shadow: 3px 3px 3px black;
+}
+
+.contactFont:hover {
+  color: rgb(105, 181, 243);
+  text-shadow: 3px 3px 3px black;
+}
+
+.footerFont {
+  font-size: 1rem;
+  color: white;
+  text-shadow: 3px 3px 3px black;
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .customHeader {
+    height: initial;
+  }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1400px) {
+  .customHeader {
+    height: initial;
+  }
+
+  .backgroundModifier img {
+    object-fit: cover;
+    object-position: center;
+    height: 83vh;
+  }
+}
+
+@media screen and (min-width: 1401px) {
+  .customHeader {
+    height: initial;
+  }
+
+  .backgroundModifier img {
+    object-fit: cover;
+    object-position: center;
+    height: 83vh;
+  }
+}

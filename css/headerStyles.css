@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+p {
+  font-family: 'Edu SA Beginner', cursive;
+}
+label {
+  font-family: 'Edu SA Beginner', cursive;
+  font-size: 1.2rem;
+}
+
+.tabla {
+  background-color: rgb(189, 189, 189) !important;
+}
+.color {
+  background-color: rgb(189, 189, 189) !important;
+}
+.img__modificar {
+  width: 400px !important;
+}
+.card__mobile {
+  display: none !important;
+}
+
+@media screen and (max-width: 800px) {
+  .tabla {
+    width: 80% !important;
+    font-size: 0.8em !important;
+  }
+  .texto {
+    text-overflow: clip !important;
+  }
+  .img__modificar {
+    width: 300px !important;
+  }
+  .tabla__galeria {
+    display: none !important;
+  }
+  .card__mobile {
+    display: block !important;
+  }
+}
