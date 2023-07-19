@@ -1,12 +1,5 @@
-<?php ob_start(); #esto evita los errores de envios de headers
-set_error_handler("var_dump");
-include './controllers/connect.php';
-session_start(); #inicializamos variables de sesion
- #si esta logueado lo dejo trabajar y sino lo mando al login de nuevo 
- if ( isset( $_SESSION['usuario'] )!='Admin'){
-    header("location:./modules/login.php");
-    die();
-} ?>
+<?php require_once 'constants.php' ?>
+<?php include './controllers/isLogged.php'; ?>
 <?php include './modules/header.php';
 $connection = new connect();;# es un objeto de tipo conexion,
       $proyectos= $connection->consultar("SELECT * FROM `projects`"); ?>

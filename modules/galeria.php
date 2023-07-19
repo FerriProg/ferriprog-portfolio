@@ -1,15 +1,8 @@
-<?php ob_start(); #esto evita los errores de envios de headers
-set_error_handler("var_dump");
-include '../controllers/connect.php';
-session_start(); #inicializamos variables de sesion
- #si esta logueado lo dejo trabajar y sino lo mando al login de nuevo 
- if ( isset( $_SESSION['usuario'] )!='Admin'){
-    header("location:./modules/login.php");
-    die();
-} ?>
+<?php require_once '../constants.php' ?>
+<?php include '../controllers/isLogged.php'; ?>
 <?php include 'header.php'; ?>
 
-<?php if($_POST){#si hay envio de datos, los inserto en la base de datos  
+<?php if($_POST){#si hay envio de datos, los inserto en la base de datos 
 
     $nombre_proyecto = $_POST['title'];
     $descripcion = $_POST['description'];
@@ -20,7 +13,7 @@ session_start(); #inicializamos variables de sesion
     #creamos una variable fecha para concatenar al nombre de la imagen, para que cada imagen sea distinta y no se pisen 
     $fecha = new DateTime();
     $imagen= $fecha->getTimestamp()."_".$imagen;
-    move_uploaded_file($imagen_temporal,"img/".$imagen);
+    move_uploaded_file($imagen_temporal,"../img/".$imagen);
    
    
     #creo una instancia(objeto) de la clase de conexion
@@ -78,7 +71,7 @@ session_start(); #inicializamos variables de sesion
                     <form action="galeria.php" method="post" enctype="multipart/form-data">
                         <div>
                             <label for="nombre">Nombre del Proyecto</label>
-                            <input required class="form-control" type="text" name="nombre" id="nombre">
+                            <input required class="form-control" type="text" name="title" id="nombre">
                         </div>
                     
                         <div>
@@ -88,7 +81,7 @@ session_start(); #inicializamos variables de sesion
                         <br>
                         <div>
                             <label for="descripcion">Indique Descripción del Proyecto</label>
-                            <textarea required class="form-control" name="descripcion" id="descripcion" cols="30" rows="4"></textarea>
+                            <textarea required class="form-control" name="description" id="descripcion" cols="30" rows="4"></textarea>
                         </div>
                         <div>
                         <br>

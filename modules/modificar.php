@@ -1,3 +1,5 @@
+<?php require_once '../constants.php' ?>
+<?php include '../controllers/isLogged.php'; ?>
 <?php include 'header.php'; 
 if($_GET){
     if(isset($_GET['modificar'])){
@@ -5,36 +7,61 @@ if($_GET){
        
         $_SESSION['id_proyecto'] = $id;
         #vamos a consultar para llenar la tabla 
-        $conexion = new conexion();
-        $proyecto= $conexion->consultar("SELECT * FROM `proyectos` where id=".$id);
+        $conexion = new connect();
+        $proyecto= $conexion->consultar("SELECT * FROM `projects` where id=".$id);
      
     }
 }
 if($_POST){
     $id = $_SESSION['id_proyecto'];
-    #debemos recuperar la imagen actual y borrarla del servidor para lugar pisar con la nueva imagen en el server y en la base de datos
-    #recuperamos la imagen de la base antes de borrar 
-    $imagen = $conexion->consultar("select imagen FROM  `proyectos` where id=".$id);
-    #la borramos de la carpeta 
-    unlink("imagenes/".$imagen[0]['imagen']);
     #levantamos los datos del formulario
-    $nombre_proyecto = $_POST['nombre'];
-    $descripcion = $_POST['descripcion'];
-    #nombre de la imagen
-    $imagen = $_FILES['archivo']['name'];
-    #tenemos que guardar la imagen en una carpeta 
-    $imagen_temporal=$_FILES['archivo']['tmp_name'];
-    #creamos una variable fecha para concatenar al nombre de la imagen, para que cada imagen sea distinta y no se pisen 
-    $fecha = new DateTime();
-    $imagen= $fecha->getTimestamp()."_".$imagen;
-    move_uploaded_file($imagen_temporal,"imagenes/".$imagen);
-    #creo una instancia(objeto) de la clase de conexion
-    $conexion = new conexion();
-    $sql = "UPDATE `proyectos` SET `nombre` = '$nombre_proyecto' , `imagen` = '$imagen', `descripcion` = '$descripcion' WHERE `proyectos`.`id` = '$id';";
-    $id_proyecto = $conexion->ejecutar($sql);
+    $nombre_proyecto = $_POST['title'];
+    $descripcion = $_POST['description'];
+    #pregunto si el usuario cargó una imagen nueva
+    if(!empty($_FILES['archivo']['name'])) {
+        #debemos recuperar la imagen actual y borrarla del servidor para lugar pisar con la nueva imagen en el server y en la base de datos
+        #recuperamos la imagen de la base antes de borrar 
+        $imagen = $conexion->consultar("select image FROM  `projects` where id=".$id);
 
-    header("location:galeria.php");
-    die();
+        ###########################################################################################
+        #si quisiera ver lo que hay en $imagen, puedo hacer lo siguiente:
+        #echo '<pre>';
+        #var_dump($imagen);
+        #echo '</pre>';
+        #die();
+        ###########################################################################################
+        
+        #la borramos de la carpeta 
+        unlink("../img/".$imagen[0]['image']);
+        #nombre de la imagen
+        $imagen = $_FILES['archivo']['name'];
+        #tenemos que guardar la imagen en una carpeta 
+        $imagen_temporal=$_FILES['archivo']['tmp_name'];
+        #creamos una variable fecha para concatenar al nombre de la imagen, para que cada imagen sea distinta y no se pisen 
+        $fecha = new DateTime();
+        $imagen= $fecha->getTimestamp()."_".$imagen;
+        move_uploaded_file($imagen_temporal,"../img/".$imagen);
+        #creo una instancia(objeto) de la clase de conexion
+        $conexion = new connect();
+        $sql = "UPDATE `projects` SET `title` = '$nombre_proyecto' , `image` = '$imagen', `description` = '$descripcion' WHERE `projects`.`id` = '$id';";
+        $id_proyecto = $conexion->ejecutar($sql);
+        header("location:galeria.php");
+        die();
+    } else {
+        $imagen = $conexion->consultar("select image FROM  `projects` where id=".$id);
+        #$imagenMantener = $imagen[0]['image'];
+
+        ###########################################################################################
+        #Al agregar las llaves alrededor de "{$imagen[0]['image']}", PHP entenderá que esa parte debe ser interpretada
+        #como una expresión dentro de la cadena y evaluará correctamente el valor de "image" en el array.
+        ###########################################################################################
+        $conexion = new connect();
+        $sql = "UPDATE `projects` SET `title` = '$nombre_proyecto' , `image` = '{$imagen[0]['image']}', `description` = '$descripcion' WHERE `projects`.`id` = '$id';";
+        $id_proyecto = $conexion->ejecutar($sql);
+        header("location:galeria.php");
+        die();
+    }
+    
 }
 ?>
 <?php #leemos proyectos 1 por 1
@@ -50,7 +77,7 @@ if($_POST){
                         <form action="#" method="post" enctype="multipart/form-data">
                             <div>
                                 <label for="nombre">Nombre del Proyecto</label>
-                                <input required class="form-control" type="text" name="nombre" id="nombre" value="<?php echo $fila['nombre']; ?>">
+                                <input required class="form-control" type="text" name="title" id="nombre" value="<?php echo $fila['title']; ?>">
                             </div>
                         
                             <div>
@@ -58,16 +85,16 @@ if($_POST){
                                     <label for="archivo">Imagen del Proyecto - Se actualizara al grabar los cambios</label>
                                     <br>
                                     <div class="d-flex justify-content-center align-item-center">
-                                        <img class="img__modificar" src="imagenes/<?php echo $fila['imagen']; ?>">
+                                        <img class="img__modificar" src="../img/<?php echo $fila['image']; ?>">
                                     </div>
                                 </div>
                                 <p>Seleccione un nueva Imagen si desea modificar</p>
-                                <input class="form-control" type="file" name ="archivo" id="archivo" value="<?php echo $fila['imagen'];?>">
+                                <input class="form-control" type="file" name ="archivo" id="archivo" value="<?php echo $fila['image'];?>">
                             </div>
                             <br>
                             <div>
                                 <label for="descripcion">Indique Descripción del Proyecto</label>
-                                <textarea required class="form-control" name="descripcion" id="descripcion" cols="30" rows="4"><?php echo $fila['descripcion'];?></textarea>
+                                <textarea required class="form-control" name="description" id="descripcion" cols="30" rows="4"><?php echo $fila['description'];?></textarea>
                             </div>
                             <div>
                             <br>

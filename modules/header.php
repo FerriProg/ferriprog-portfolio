@@ -37,7 +37,7 @@
                                 style="width:50px;height:50px;">
                                 
                             </lord-icon>
-                            <a class="nav-link active" aria-current="page"  href="index_admin.php">Ver proyectos</a>
+                            <a class="nav-link active" aria-current="page"  href="<?php echo ROOTPATH . '/index_admin.php'?>">Ver proyectos</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -50,7 +50,7 @@
                             colors="primary:#FFFFFF"
                             style="width:50px;height:50px">
                             </lord-icon>
-                            <a class="nav-link active" aria-current="page"  href="./modules/galeria.php">CRUD</a>
+                            <a class="nav-link active" aria-current="page"  href="<?php echo ROOTPATH . '/modules/galeria.php'?>">CRUD</a>
                         </div>
                    
                     </li>
@@ -64,7 +64,10 @@
                                 colors="primary:#FFFFFF"
                                 style="width:50px;height:50px">
                             </lord-icon>
-                            <a class="nav-link active" href="./controllers/close.php">Cerrar sesión de User: <span><?php echo $_SESSION['usuario']; ?></span>  </a> 
+                            
+                            
+                            
+                            <a class="nav-link active" href="<?php echo ROOTPATH . '/controllers/close.php'?>" >Cerrar sesión de User: <span><?php echo $_SESSION['usuario']; ?></span>  </a> 
                         </div>
                    
                     </li>
