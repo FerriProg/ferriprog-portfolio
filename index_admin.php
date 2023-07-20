@@ -20,11 +20,25 @@ $connection = new connect();;# es un objeto de tipo conexion,
     <?php #leemos proyectos 1 por 1
         foreach($proyectos as $proyecto){ ?>
             <div class="col">
-                <div class="card border border-3 shadow">
+                <div class="card border border-3 shadow  customCardHeight">
                     <img class="card-img-top" style="object-fit:cover;" src="img/<?php echo $proyecto['image'];?>" alt="" width="300">
-                    <div class="card-body">
+                    <div class="card-body overflow-auto">
                         <h5 class="card-title"><?php echo $proyecto['title'];?></h5>
                         <p class="card-text"><?php echo $proyecto['description'];?></p>
+                        <a
+                  class="text-decoration-none"
+                  href="<?php echo $proyecto['github'];?>"
+                  target="_blank"
+                >
+                  <i class="fa-brands fa-github"></i>
+                </a>
+                <a
+                  class="text-decoration-none"
+                  href="<?php echo $proyecto['extlink'];?>"
+                  target="_blank"
+                >
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
                     </div>
                 </div>
             </div>

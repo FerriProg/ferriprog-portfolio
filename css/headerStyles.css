@@ -4,11 +4,15 @@
   box-sizing: border-box;
 }
 p {
-  font-family: 'Edu SA Beginner', cursive;
+  font-family: 'Crimson Text', serif;
 }
 label {
-  font-family: 'Edu SA Beginner', cursive;
+  font-family: 'Crimson Text', serif;
   font-size: 1.2rem;
+}
+
+.customCardHeight {
+  height: 30rem;
 }
 
 .tabla {

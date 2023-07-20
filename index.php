@@ -74,7 +74,7 @@ $proyectos= $connection->consultar("SELECT * FROM `projects`");
         </div>
       </nav>
 
-      <div class="carouselModifier">
+      <div class="outModifier">
         <div class="backgroundModifier">
           <img src="./img/main.jpg" class="d-block w-100" alt="ba1" />
         </div>
@@ -107,33 +107,33 @@ $proyectos= $connection->consultar("SELECT * FROM `projects`");
                 foreach($proyectos as $proyecto){ 
                 ?>
                 <div class="col-md-4 mb-2">
-            <div class="card customCardHeight">
+            <div class="card customProjectCardHeight d-flex flex-column">
               <img
                 src="./img/<?php echo $proyecto['image'];?>"
                 class="card-img-top"
                 alt="Happy Tails project"
               />
-              <div class="card-body overflow-auto">
+              <div class="card-body text-center d-flex flex-column">
                 <h5 class="card-title">
                 <?php echo $proyecto['title'];?>
                 </h5>
-                <p class="card-text">
-                <?php echo $proyecto['description'];?>
-                </p>
-                <a
-                  class="text-decoration-none"
-                  href="<?php echo $proyecto['github'];?>"
-                  target="_blank"
+                
+                <div class="mt-auto">
+                <a href="#" class="btn btn-primary abrirModal mt-auto"
+                  data-bs-toggle="modal"
+                  data-bs-target="#myModal"
+                  
+                  data-title="<?php echo $proyecto['title']; ?>"
+                  data-image="<?php echo $proyecto['image']; ?>"
+                  data-description="<?php echo $proyecto['description']; ?>"
+                  data-github="<?php echo $proyecto['github'];?>"
+                  data-extlink="<?php echo $proyecto['extlink'];?>"
                 >
-                  <i class="fa-brands fa-github"></i>
+                  Ver detalles
                 </a>
-                <a
-                  class="text-decoration-none"
-                  href="<?php echo $proyecto['extlink'];?>"
-                  target="_blank"
-                >
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
+                </div>
+                
+
               </div>
             </div>
           </div>
@@ -313,6 +313,51 @@ $proyectos= $connection->consultar("SELECT * FROM `projects`");
         administrador con CRUD.
       </h5>
     </footer>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Título del modal</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+
+          <img
+              src=""
+              class="modal-image-container"
+              alt=""
+            />
+          
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <a
+              class="text-decoration-none modal-github"
+              href=""
+              target="_blank"
+            >
+            <div>
+              <i class="fa-brands fa-github"></i> Repositorio
+            </div>
+              
+            </a>
+            <a
+              class="text-decoration-none modal-extlink"
+              href=""
+              target="_blank"
+            >
+            <div>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Link externo
+            </div>
+              
+            </a>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/modal.js"></script>
   </body>
 </html>

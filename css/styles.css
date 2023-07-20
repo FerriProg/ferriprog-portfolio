@@ -83,6 +83,10 @@ body {
   text-shadow: 3px 3px 3px black;
 }
 
+.customProjectCardHeight {
+  height: 22rem;
+}
+
 .customCardHeight {
   height: 30rem;
 }

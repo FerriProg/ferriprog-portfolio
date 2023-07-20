@@ -14,11 +14,13 @@
     $fecha = new DateTime();
     $imagen= $fecha->getTimestamp()."_".$imagen;
     move_uploaded_file($imagen_temporal,"../img/".$imagen);
+    $repo = $_POST['github'];
+    $extlink = $_POST['extlink'];
    
    
     #creo una instancia(objeto) de la clase de conexion
     $conexion = new connect();
-    $sql="INSERT INTO `projects` (`id`, `title`, `image`, `description`) VALUES (NULL, '$nombre_proyecto' , '$imagen', '$descripcion')";
+    $sql="INSERT INTO `projects` (`id`, `title`, `image`, `description`, `github`, `extlink`) VALUES (NULL, '$nombre_proyecto' , '$imagen', '$descripcion', '$repo', '$extlink')";
     $id_proyecto = $conexion->ejecutar($sql);
      #para que no intente borrar muchas veces
      header("Location:galeria.php");
@@ -83,6 +85,15 @@
                             <label for="descripcion">Indique Descripción del Proyecto</label>
                             <textarea required class="form-control" name="description" id="descripcion" cols="30" rows="4"></textarea>
                         </div>
+                        <br>
+                        <div>
+                            <label for="repo">Github</label>
+                            <input required class="form-control" type="text" name="github" id="github"></input>
+                        </div>
+                        <div>
+                            <label for="descripcion">Link externo (deploy, video, etc)</label>
+                            <input required class="form-control" type="text" name="extlink" id="extlink"></input>
+                        </div>
                         <div>
                         <br>
                         <input class="btn btn-success" type="submit" value="Enviar Proyecto">
@@ -101,11 +112,13 @@
                 <table class="table tabla__galeria bg-secondary">
                     <thead>
                         <tr>
-                            <th>Nombre</th>
-                            <th>Imagen</th>
-                            <th>Descripcion</th>
-                            <th>Eliminar</th>
-                            <th>Modificar</th>
+                            <th class="text-center">Nombre</th>
+                            <th class="text-center">Imagen</th>
+                            <th class="text-center">Descripción</th>
+                            <th class="text-center">Github</th>
+                            <th class="text-center">Link externo</th>
+                            <th class="text-center">Eliminar</th>
+                            <th class="text-center">Modificar</th>
                         </tr>
                     </thead>
                     <tbody >
@@ -117,6 +130,8 @@
                             <td><?php echo $proyecto['title'];?></td>
                             <td> <img width="200" src="../img/<?php echo $proyecto['image'];?>" alt="">  </td>
                             <td class="texto"><?php echo $proyecto['description'];?></td>
+                            <td class="text-center"><a class="text-decoration-none" href="<?php echo $proyecto['github'];?>" target="_blank"> <i class="fa-brands fa-github"></i> </a></td>
+                            <td class="text-center"><a class="text-decoration-none" href="<?php echo $proyecto['extlink'];?>" target="_blank"> <i class="fa-solid fa-arrow-up-right-from-square"></i> </a></td>
                             <td><a name="eliminar" id="eliminar" class="btn btn-danger" href="?borrar=<?php echo $proyecto['id'];?>">Eliminar</a></td>
                             <td><a name="modificar" id="modificar" class="btn btn-warning" href="?modificar=<?php echo $proyecto['id'];?>">Modificar</a></td>
                         </tr>

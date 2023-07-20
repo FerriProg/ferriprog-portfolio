@@ -17,12 +17,12 @@ if($_POST){
     #levantamos los datos del formulario
     $nombre_proyecto = $_POST['title'];
     $descripcion = $_POST['description'];
+    #debemos recuperar la imagen actual y borrarla del servidor para lugar pisar con la nueva imagen en el server y en la base de datos
+    #recuperamos la imagen de la base antes de borrar 
+    $imagen = $conexion->consultar("select image FROM  `projects` where id=".$id);
     #pregunto si el usuario cargó una imagen nueva
     if(!empty($_FILES['archivo']['name'])) {
-        #debemos recuperar la imagen actual y borrarla del servidor para lugar pisar con la nueva imagen en el server y en la base de datos
-        #recuperamos la imagen de la base antes de borrar 
-        $imagen = $conexion->consultar("select image FROM  `projects` where id=".$id);
-
+        
         ###########################################################################################
         #si quisiera ver lo que hay en $imagen, puedo hacer lo siguiente:
         #echo '<pre>';
@@ -41,26 +41,34 @@ if($_POST){
         $fecha = new DateTime();
         $imagen= $fecha->getTimestamp()."_".$imagen;
         move_uploaded_file($imagen_temporal,"../img/".$imagen);
+        $imagenFinal = $imagen;
         #creo una instancia(objeto) de la clase de conexion
-        $conexion = new connect();
-        $sql = "UPDATE `projects` SET `title` = '$nombre_proyecto' , `image` = '$imagen', `description` = '$descripcion' WHERE `projects`.`id` = '$id';";
-        $id_proyecto = $conexion->ejecutar($sql);
-        header("location:galeria.php");
-        die();
+        #$conexion = new connect();
+        #$sql = "UPDATE `projects` SET `title` = '$nombre_proyecto' , `image` = '$imagen', `description` = '$descripcion' WHERE `projects`.`id` = '$id';";
+        #$id_proyecto = $conexion->ejecutar($sql);
+        #header("location:galeria.php");
+        #die();
     } else {
-        $imagen = $conexion->consultar("select image FROM  `projects` where id=".$id);
-        #$imagenMantener = $imagen[0]['image'];
+        $imagenFinal = $imagen[0]['image'];
 
         ###########################################################################################
         #Al agregar las llaves alrededor de "{$imagen[0]['image']}", PHP entenderá que esa parte debe ser interpretada
         #como una expresión dentro de la cadena y evaluará correctamente el valor de "image" en el array.
         ###########################################################################################
-        $conexion = new connect();
-        $sql = "UPDATE `projects` SET `title` = '$nombre_proyecto' , `image` = '{$imagen[0]['image']}', `description` = '$descripcion' WHERE `projects`.`id` = '$id';";
-        $id_proyecto = $conexion->ejecutar($sql);
-        header("location:galeria.php");
-        die();
+        #$conexion = new connect();
+        #$sql = "UPDATE `projects` SET `title` = '$nombre_proyecto' , `image` = '{$imagen[0]['image']}', `description` = '$descripcion' WHERE `projects`.`id` = '$id';";
+        #$id_proyecto = $conexion->ejecutar($sql);
+        #header("location:galeria.php");
+        #die();
     }
+    $github = $_POST['github'];
+    $extlink = $_POST['extlink'];
+    #creo una instancia(objeto) de la clase de conexion
+    $conexion = new connect();
+    $sql = "UPDATE `projects` SET `title` = '$nombre_proyecto' , `image` = '$imagenFinal', `description` = '$descripcion', `github` = '$github', `extlink` = '$extlink' WHERE `projects`.`id` = '$id';";
+    $id_proyecto = $conexion->ejecutar($sql);
+    header("location:galeria.php");
+    die();
     
 }
 ?>
@@ -95,6 +103,15 @@ if($_POST){
                             <div>
                                 <label for="descripcion">Indique Descripción del Proyecto</label>
                                 <textarea required class="form-control" name="description" id="descripcion" cols="30" rows="4"><?php echo $fila['description'];?></textarea>
+                            </div>
+                            <br>
+                            <div>
+                                <label for="github">Github</label>
+                                <input required class="form-control" type="text" name="github" id="github" value="<?php echo $fila['github']; ?>">
+                            </div>
+                            <div>
+                                <label for="extlink">Link externo (deploy, video, etc)</label>
+                                <input required class="form-control" type="text" name="extlink" id="extlink" value="<?php echo $fila['extlink']; ?>">
                             </div>
                             <div>
                             <br>
