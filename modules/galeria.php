@@ -1,5 +1,6 @@
 <?php require_once '../constants.php' ?>
 <?php include '../controllers/isLogged.php'; ?>
+<?php $currentPage = 'galeria'; ?>
 <?php include 'header.php'; ?>
 
 <?php if($_POST){#si hay envio de datos, los inserto en la base de datos 
@@ -38,7 +39,7 @@
         #recuperamos la imagen de la base antes de borrar 
         $imagen = $conexion->consultar("select image FROM  `projects` where id=".$id);
         #la borramos de la carpeta 
-        unlink("imagenes/".$imagen[0]['imagen']);
+        unlink("../img/".$imagen[0]['image']);
 
         #borramos el registro de la base 
         $sql ="DELETE FROM `projects` WHERE `projects`.`id` =".$id; 
@@ -59,57 +60,17 @@
   $proyectos= $conexion->consultar("SELECT * FROM `projects`");
 ?> 
 
-<br>
-<!--ya tenemos un container en el header que cierra en el footer-->
-
-    <div class="row d-flex justify-content-center mb-5">
-        <div class="col-md-10 col-sm-12">
-            <div class="card bg-secondary">
-                <div class="card-header">
-                    Datos del Proyecto
-                </div>
-                <div class="card-body">
-                    <!--para recepcionar archivos uso enctype-->
-                    <form action="galeria.php" method="post" enctype="multipart/form-data">
-                        <div>
-                            <label for="nombre">Nombre del Proyecto</label>
-                            <input required class="form-control" type="text" name="title" id="nombre">
-                        </div>
-                    
-                        <div>
-                            <label for="archivo">Imagen del Proyecto</label>
-                            <input required class="form-control" type="file" name ="archivo" id="archivo">
-                        </div>
-                        <br>
-                        <div>
-                            <label for="descripcion">Indique Descripción del Proyecto</label>
-                            <textarea required class="form-control" name="description" id="descripcion" cols="30" rows="4"></textarea>
-                        </div>
-                        <br>
-                        <div>
-                            <label for="repo">Github</label>
-                            <input required class="form-control" type="text" name="github" id="github"></input>
-                        </div>
-                        <div>
-                            <label for="descripcion">Link externo (deploy, video, etc)</label>
-                            <input required class="form-control" type="text" name="extlink" id="extlink"></input>
-                        </div>
-                        <div>
-                        <br>
-                        <input class="btn btn-success" type="submit" value="Enviar Proyecto">
-                        </div>
-                
-                    </form>
-                </div> <!--cierra el body-->
-    
-            </div><!--cierra el card-->
-            
-        </div><!--cierra el col-->
-    </div><!--cierra el row-->
-    <div class="bg-secondary">
-        <div class="row d-flex justify-content-center mb-5">
+<div class="container-fluid">
+        <div class="row d-flex justify-content-center">
             <div class="col-md-10 col-sm-6">
-                <table class="table tabla__galeria bg-secondary">
+                <a class="btn btn-success mb-3" href="./create.php">Nuevo proyecto</a>
+            </div>
+        </div>
+    </div>
+    <div class="customColorBackground">
+        <div class="row container-fluid d-flex justify-content-center mb-5">
+            <div class="col-md-10 col-sm-6">
+                <table class="table tabla__galeria customColorBackground">
                     <thead>
                         <tr>
                             <th class="text-center">Nombre</th>
@@ -130,10 +91,10 @@
                             <td><?php echo $proyecto['title'];?></td>
                             <td> <img width="200" src="../img/<?php echo $proyecto['image'];?>" alt="">  </td>
                             <td class="texto"><?php echo $proyecto['description'];?></td>
-                            <td class="text-center"><a class="text-decoration-none" href="<?php echo $proyecto['github'];?>" target="_blank"> <i class="fa-brands fa-github"></i> </a></td>
-                            <td class="text-center"><a class="text-decoration-none" href="<?php echo $proyecto['extlink'];?>" target="_blank"> <i class="fa-solid fa-arrow-up-right-from-square"></i> </a></td>
-                            <td><a name="eliminar" id="eliminar" class="btn btn-danger" href="?borrar=<?php echo $proyecto['id'];?>">Eliminar</a></td>
-                            <td><a name="modificar" id="modificar" class="btn btn-warning" href="?modificar=<?php echo $proyecto['id'];?>">Modificar</a></td>
+                            <td class="text-center"><a class="btn btn-secondary btn-icon" href="<?php echo $proyecto['github'];?>" target="_blank"> <i class="fa-brands fa-github"></i> </a></td>
+                            <td class="text-center"><a class="btn btn-dark btn-icon" href="<?php echo $proyecto['extlink'];?>" target="_blank"> <i class="fa-solid fa-arrow-up-right-from-square"></i> </a></td>
+                            <td class="text-center"><a name="eliminar" id="eliminar" class="btn btn-danger btn-icon" href="?borrar=<?php echo $proyecto['id'];?>"><i class="fa-solid fa-trash"></i></a></td>
+                            <td class="text-center"><a name="modificar" id="modificar" class="btn btn-warning btn-icon" href="?modificar=<?php echo $proyecto['id'];?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
                         </tr>
 
                         <?php #cerramos la llave del foreach
@@ -145,15 +106,35 @@
                  foreach($proyectos as $proyecto){ ?>
                     <div class="col card__mobile  mb-4">
                         <div class="card border border-3 shadow w-100">
-                            <h3 class="card-title text-dark"><?php echo $proyecto['nombre'];?></h3>
+                            <h3 class="card-title text-dark"><?php echo $proyecto['title'];?></h3>
                             <a>
-                                <img class="card-img-top" width="200" src="imagenes/<?php echo $proyecto['imagen'];?>" alt="">
+                                <img class="card-img-top" width="200" src="../img/<?php echo $proyecto['image'];?>" alt="">
                             </a>
                             <div class="card-body">
                                
-                                <p class="card-text text-dark"><?php echo $proyecto['descripcion'];?></p>
-                                <a name="eliminar" id="eliminar" class="btn btn-danger" href="?borrar=<?php echo $proyecto['id'];?>">Eliminar</a>
-                                <a name="modificar" id="modificar" class="btn btn-warning" href="?modificar=<?php echo $proyecto['id'];?>">Modificar</a>
+                                <p class="card-text text-dark"><?php echo $proyecto['description'];?></p>
+                                <a
+              class="text-decoration-none modal-github btn btn-secondary btn-icon"
+              href="<?php echo $proyecto['github'];?>"
+              target="_blank"
+            >
+            <div>
+              <i class="fa-brands fa-github"></i>
+            </div>
+              
+            </a>
+            <a
+              class="text-decoration-none modal-extlink btn btn-dark btn-icon"
+              href="<?php echo $proyecto['extlink'];?>"
+              target="_blank"
+            >
+            <div>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+              
+            </a>
+                                <a name="eliminar" id="eliminar" class="btn btn-danger btn-icon" href="?borrar=<?php echo $proyecto['id'];?>"><i class="fa-solid fa-trash"></i></a>
+                                <a name="modificar" id="modificar" class="btn btn-warning btn-icon" href="?modificar=<?php echo $proyecto['id'];?>"><i class="fa-solid fa-pen-to-square"></i></a>
                             </div>
                         </div>
                     </div>

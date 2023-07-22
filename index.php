@@ -332,7 +332,7 @@ $proyectos= $connection->consultar("SELECT * FROM `projects`");
           <div class="modal-body"></div>
           <div class="modal-footer">
             <a
-              class="text-decoration-none modal-github"
+              class="text-decoration-none modal-github btn btn-secondary btn-icon"
               href=""
               target="_blank"
             >
@@ -342,7 +342,7 @@ $proyectos= $connection->consultar("SELECT * FROM `projects`");
               
             </a>
             <a
-              class="text-decoration-none modal-extlink"
+              class="text-decoration-none modal-extlink btn btn-dark btn-icon"
               href=""
               target="_blank"
             >
@@ -351,7 +351,7 @@ $proyectos= $connection->consultar("SELECT * FROM `projects`");
             </div>
               
             </a>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
           </div>
         </div>
       </div>

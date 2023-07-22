@@ -22,63 +22,50 @@
      <title>Portfolio</title>
 </head>
 <body>
-<div class="container-fluid">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+    <header class="p-0 m-0 customHeader container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-light backgroundColor">
+        <div class="container">
+          
+          <button
+            class="navbar-toggler mobile-center"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2">
-                    <li class="nav-item">
-                        <div class="p-3 d-flex ">
-                            <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
-                            <lord-icon
-                                src="https://cdn.lordicon.com/igpbsrza.json"
-                                trigger="loop"
-                                delay="1000"
-                                colors="primary:#FFFFFF"
-                                style="width:50px;height:50px;">
-                                
-                            </lord-icon>
-                            <a class="nav-link active" aria-current="page"  href="<?php echo ROOTPATH . '/index_admin.php'?>">Ver proyectos</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <div class="p-3 d-flex ">
-                            <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
-                            <lord-icon
-                            src="https://cdn.lordicon.com/stxtcyyo.json"
-                            trigger="loop"
-                            delay="1000"
-                            colors="primary:#FFFFFF"
-                            style="width:50px;height:50px">
-                            </lord-icon>
-                            <a class="nav-link active" aria-current="page"  href="<?php echo ROOTPATH . '/modules/galeria.php'?>">CRUD</a>
-                        </div>
-                   
-                    </li>
-                    <li class="nav-item">
-                        <div class="p-3 d-flex ">
-                            <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
-                            <lord-icon
-                                src="https://cdn.lordicon.com/becxqsdr.json"
-                                trigger="loop"
-                                delay="1000"
-                                colors="primary:#FFFFFF"
-                                style="width:50px;height:50px">
-                            </lord-icon>
-                            
-                            
-                            
-                            <a class="nav-link active" href="<?php echo ROOTPATH . '/controllers/close.php'?>" >Cerrar sesión de User: <span><?php echo $_SESSION['usuario']; ?></span>  </a> 
-                        </div>
-                   
-                    </li>
-                
-                </ul>
-            
-            </div>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav w-100 justify-content-center">
+              <li class="nav-item d-flex justify-content-center">
+                <a
+                  class="nav-link navLink2 text-center <?php echo ($currentPage === 'index_admin') ? 'active disabled' : ''; ?>"
+                  aria-current="page"
+                  href="<?php echo ROOTPATH . '/index_admin.php'?>"
+                  >Ver proyectos</a
+                >
+              </li>
+              <li class="nav-item d-flex justify-content-center">
+                <a class="nav-link navLink2 text-center <?php echo ($currentPage === 'galeria') ? 'active disabled' : ''; ?>" href="<?php echo ROOTPATH . '/modules/galeria.php'?>"
+                  >Administrar proyectos</a
+                >
+              </li>
+              <li class="nav-item d-flex justify-content-center">
+                <a class="nav-link navLink2 text-center" target="_blank" href="<?php echo ROOTPATH . '/index.php'?>"
+                  >Ir al portfolio</a
+                >
+              </li>
+              <li class="nav-item d-flex justify-content-center">
+                <a class="nav-link navLink2 text-center" href="<?php echo ROOTPATH . '/controllers/close.php'?>"
+                  >Cerrar sesión de User: <span><?php echo $_SESSION['usuario']; ?></span></a
+                >
+              </li>
+              
+            </ul>
+          </div>
         </div>
-    </nav>
-   
+      </nav>
+    </header>

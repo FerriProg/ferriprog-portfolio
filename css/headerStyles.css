@@ -3,9 +3,17 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  font-family: 'Crimson Text', serif;
+  font-weight: 400;
+  background-color: rgb(43, 155, 189);
+}
+
 p {
   font-family: 'Crimson Text', serif;
 }
+
 label {
   font-family: 'Crimson Text', serif;
   font-size: 1.2rem;
@@ -13,6 +21,30 @@ label {
 
 .customCardHeight {
   height: 30rem;
+}
+
+.navbar-light .navbar-nav .navLink2 {
+  color: white;
+  font-size: 1.5rem;
+  text-shadow: 3px 3px 3px black;
+}
+
+.navbar-light .navbar-nav .navLink2:hover {
+  color: rgb(105, 181, 243);
+  text-shadow: 3px 3px 3px black;
+}
+
+.nav-link.active {
+  color: white !important;
+  font-size: 1.5rem;
+  text-shadow: 3px 3px 3px black;
+  text-decoration: underline;
+}
+
+.footerFont {
+  font-size: 1rem;
+  color: white;
+  text-shadow: 3px 3px 3px black;
 }
 
 .tabla {
@@ -28,7 +60,20 @@ label {
   display: none !important;
 }
 
-@media screen and (max-width: 800px) {
+.customColorBackground {
+  background-color: rgb(212, 252, 252);
+}
+
+.customColorBackground tbody tr {
+  border-bottom: 1px solid gray;
+}
+
+@media screen and (max-width: 991px) {
+  .mobile-center {
+    display: block;
+    margin: 0 auto;
+    float: none;
+  }
   .tabla {
     width: 80% !important;
     font-size: 0.8em !important;
@@ -44,5 +89,17 @@ label {
   }
   .card__mobile {
     display: block !important;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .customHeader {
+    height: 2rem;
+  }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1400px) {
+  .customHeader {
+    height: initial;
   }
 }

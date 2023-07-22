@@ -30,7 +30,8 @@ if($_POST){
         #echo '</pre>';
         #die();
         ###########################################################################################
-        
+        #recuperamos la imagen de la base antes de borrar 
+        $imagen = $conexion->consultar("select image FROM  `projects` where id=".$id);
         #la borramos de la carpeta 
         unlink("../img/".$imagen[0]['image']);
         #nombre de la imagen
@@ -76,7 +77,7 @@ if($_POST){
   foreach($proyecto as $fila){ ?>
     <div class="row d-flex justify-content-center mt-4 mb-5">
             <div class="col-md-10 col-sm-12">
-                <div class="card" style="background-color:#CDB3A6;">
+                <div class="card customColorBackground">
                     <div class="card-header">
                         Datos del Proyecto
                     </div>
