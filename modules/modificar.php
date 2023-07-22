@@ -1,5 +1,6 @@
 <?php require_once '../constants.php' ?>
 <?php include '../controllers/isLogged.php'; ?>
+<?php $currentPage = ''; ?>
 <?php include 'header.php'; 
 if($_GET){
     if(isset($_GET['modificar'])){
