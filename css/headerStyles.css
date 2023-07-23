@@ -56,8 +56,8 @@ label {
 .img__modificar {
   width: 400px !important;
 }
-.card__mobile {
-  display: none !important;
+.customMinWidth {
+  min-width: 257px;
 }
 
 .customColorBackground {
@@ -83,12 +83,6 @@ label {
   }
   .img__modificar {
     width: 300px !important;
-  }
-  .tabla__galeria {
-    display: none !important;
-  }
-  .card__mobile {
-    display: block !important;
   }
 }
 

@@ -69,13 +69,14 @@
     </div>
     <div class="customColorBackground">
         <div class="row container-fluid d-flex justify-content-center mb-5">
-            <div class="col-md-10 col-sm-6">
-                <table class="table tabla__galeria customColorBackground">
+            <div class="col-md-10">
+                <div class="table-responsive">
+                <table class="table customColorBackground">
                     <thead>
                         <tr>
-                            <th class="text-center">Nombre</th>
-                            <th class="text-center">Imagen</th>
-                            <th class="text-center">Descripción</th>
+                            <th class="text-center customMinWidth">Nombre</th>
+                            <th class="text-center customMinWidth">Imagen</th>
+                            <th class="text-center customMinWidth">Descripción</th>
                             <th class="text-center">Github</th>
                             <th class="text-center">Link externo</th>
                             <th class="text-center">Eliminar</th>
@@ -101,44 +102,7 @@
                         } ?>
                     </tbody>
                 </table>
-                <h2 class="card-title text-dark card__mobile">Listado de proyectos ingresados: </h2>
-                <?php #leemos proyectos 1 por 1
-                 foreach($proyectos as $proyecto){ ?>
-                    <div class="col card__mobile  mb-4">
-                        <div class="card border border-3 shadow w-100">
-                            <h3 class="card-title text-dark"><?php echo $proyecto['title'];?></h3>
-                            <a>
-                                <img class="card-img-top" width="200" src="../img/<?php echo $proyecto['image'];?>" alt="">
-                            </a>
-                            <div class="card-body">
-                               
-                                <p class="card-text text-dark"><?php echo $proyecto['description'];?></p>
-                                <a
-              class="text-decoration-none modal-github btn btn-secondary btn-icon"
-              href="<?php echo $proyecto['github'];?>"
-              target="_blank"
-            >
-            <div>
-              <i class="fa-brands fa-github"></i>
-            </div>
-              
-            </a>
-            <a
-              class="text-decoration-none modal-extlink btn btn-dark btn-icon"
-              href="<?php echo $proyecto['extlink'];?>"
-              target="_blank"
-            >
-            <div>
-              <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </div>
-              
-            </a>
-                                <a name="eliminar" id="eliminar" class="btn btn-danger btn-icon" href="?borrar=<?php echo $proyecto['id'];?>"><i class="fa-solid fa-trash"></i></a>
-                                <a name="modificar" id="modificar" class="btn btn-warning btn-icon" href="?modificar=<?php echo $proyecto['id'];?>"><i class="fa-solid fa-pen-to-square"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                <?php } ?>
+                </div>
             </div><!--cierra el col-->  
             
         </div>
