@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const abrirModalButtons = document.querySelectorAll('.abrirModal');
+  const openModalButtons = document.querySelectorAll('.openModal');
   const modalTitle = document.querySelector('.modal-title');
   const modalBody = document.querySelector('.modal-body');
   const modalGithub = document.querySelector('.modal-github');
   const modalExtlink = document.querySelector('.modal-extlink');
   const modalImageContainer = document.querySelector('.modal-image-container');
 
-  abrirModalButtons.forEach((button) => {
+  openModalButtons.forEach((button) => {
     button.addEventListener('click', function () {
       const title = this.getAttribute('data-title');
       const description = this.getAttribute('data-description');

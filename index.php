@@ -1,7 +1,6 @@
 <?php include './controllers/connect.php';
 $connection = new connect();
-$proyectos= $connection->consultar("SELECT * FROM `projects`");
-?>
+$proyectos= $connection->consultar("SELECT * FROM `projects`"); ?>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -27,7 +26,7 @@ $proyectos= $connection->consultar("SELECT * FROM `projects`");
   </head>
   <body>
     <header class="p-0 m-0 customHeader container-fluid">
-      <nav class="navbar navbar-expand-lg navbar-light backgroundColor">
+      <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <a class="navbar-brand text-white customShadow" href="#">
             <img src="./img/face.jpg" alt="Ferriprog face" width="100px" />
@@ -74,27 +73,19 @@ $proyectos= $connection->consultar("SELECT * FROM `projects`");
         </div>
       </nav>
 
-      <div class="outModifier">
-        <div class="backgroundModifier">
-          <img src="./img/main.jpg" class="d-block w-100" alt="ba1" />
+      <div class="custom-bg-image">
+        <div class="container custom-text-container">
+          <h1 class="mb-3 text-center">Web Fullstack Developer Jr.</h1>
+          <p class="lh-base fw-normal text-center mb-sm-3">
+            Soy un programador Web Fullstack Jr muy entusiasta de mi trabajo.
+            Siempre dispuesto a resolver nuevos problemas y desafíos. Manejo
+            stack MERN y PERN, actualmente me encuentro aprendiendo PHP y JAVA,
+            deseo profundizar en backend. También soy Técnico Universitario en
+            Electrónica; tengo un background de estudios avanzados en la carrera
+            de Ingeniería Electrónica, y First Certificate en Inglés (Nivel C2
+            Proficient).
+          </p>
         </div>
-        <section
-          id="about"
-          class="d-flex justify-content-center align-items-center aboutCustomHeight"
-        >
-          <div class="aboutChild d-flex flex-column text-center textOverImage">
-            <h1 class="mb-3 text-center">Web Fullstack Developer Jr.</h1>
-            <p class="lh-base fw-normal text-center mb-sm-3 customFont">
-              Soy un programador Web Fullstack Jr muy entusiasta de mi trabajo.
-              Siempre dispuesto a resolver nuevos problemas y desafíos. Manejo
-              stack MERN y PERN, actualmente me encuentro aprendiendo PHP y
-              JAVA, deseo profundizar en backend. También soy Técnico
-              Universitario en Electrónica; tengo un background de estudios
-              avanzados en la carrera de Ingeniería Electrónica, y First
-              Certificate en Inglés (Nivel C2 Proficient).
-            </p>
-          </div>
-        </section>
       </div>
     </header>
     <main>
@@ -103,44 +94,38 @@ $proyectos= $connection->consultar("SELECT * FROM `projects`");
           <div class="projectSectionTitle">Mis proyectos</div>
         </h2>
         <div class="row mt-0 mb-0 me-auto ms-auto">
-        <?php #leemos proyectos 1 por 1
-                foreach($proyectos as $proyecto){ 
-                ?>
-                <div class="col-md-4 mb-2">
-            <div class="card customProjectCardHeight d-flex flex-column">
-              <img
-                src="./img/<?php echo $proyecto['image'];?>"
-                class="card-img-top"
-                alt="Happy Tails project"
-              />
-              <div class="card-body text-center d-flex flex-column">
-                <h5 class="card-title">
-                <?php echo $proyecto['title'];?>
-                </h5>
-                
-                <div class="mt-auto">
-                <a href="#" class="btn btn-primary abrirModal mt-auto"
-                  data-bs-toggle="modal"
-                  data-bs-target="#myModal"
-                  
-                  data-title="<?php echo $proyecto['title']; ?>"
-                  data-image="<?php echo $proyecto['image']; ?>"
-                  data-description="<?php echo $proyecto['description']; ?>"
-                  data-github="<?php echo $proyecto['github'];?>"
-                  data-extlink="<?php echo $proyecto['extlink'];?>"
-                >
-                  Ver detalles
-                </a>
-                </div>
-                
+          <?php foreach($proyectos as $proyecto){ ?>
+            <div class="col-md-4 mb-2">
+              <div class="card customProjectCardHeight d-flex flex-column">
+                <img
+                  src="./img/<?php echo $proyecto['image'];?>"
+                  class="card-img-top"
+                  alt="Happy Tails project"
+                />
+                <div class="card-body text-center d-flex flex-column">
+                  <h5 class="card-title">
+                    <?php echo $proyecto['title'];?>
+                  </h5>
 
+                  <div class="mt-auto">
+                    <a
+                      href="#"
+                      class="btn btn-primary openModal mt-auto"
+                      data-bs-toggle="modal"
+                      data-bs-target="#cardModal"
+                      data-title="<?php echo $proyecto['title']; ?>"
+                      data-image="<?php echo $proyecto['image']; ?>"
+                      data-description="<?php echo $proyecto['description']; ?>"
+                      data-github="<?php echo $proyecto['github'];?>"
+                      data-extlink="<?php echo $proyecto['extlink'];?>"
+                    >
+                      Ver detalles
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-                <?php 
-                } 
-              ?>
-          
+          <?php } ?>
         </div>
       </section>
 
@@ -148,7 +133,7 @@ $proyectos= $connection->consultar("SELECT * FROM `projects`");
         <h2 class="d-flex justify-content-center fs-3 p-3 mb-0">
           <div class="projectSectionTitle">Testimonios</div>
         </h2>
-        <div class="row mt-0 mb-0 me-auto ms-auto customWidth">
+        <div class="row mt-0 mb-0 me-auto ms-auto">
           <div class="col-md-4 mb-2 d-flex align-items-stretch">
             <div class="card">
               <div class="card-body">
@@ -314,44 +299,53 @@ $proyectos= $connection->consultar("SELECT * FROM `projects`");
       </h5>
     </footer>
     <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="cardModal"
+      tabindex="-1"
+      aria-labelledby="modalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Título del modal</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            <h5 class="modal-title" id="modalLabel">Título del modal</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Cerrar"
+            ></button>
           </div>
 
-          <img
-              src=""
-              class="modal-image-container"
-              alt=""
-            />
-          
+          <img src="" class="modal-image-container" alt="" />
+
           <div class="modal-body"></div>
           <div class="modal-footer">
             <a
-              class="text-decoration-none modal-github btn btn-secondary btn-icon"
+              class="modal-github btn btn-secondary btn-icon"
               href=""
               target="_blank"
             >
-            <div>
-              <i class="fa-brands fa-github"></i> Repositorio
-            </div>
-              
+              <div><i class="fa-brands fa-github"></i> Repositorio</div>
             </a>
             <a
-              class="text-decoration-none modal-extlink btn btn-dark btn-icon"
+              class="modal-extlink btn btn-dark btn-icon"
               href=""
               target="_blank"
             >
-            <div>
-              <i class="fa-solid fa-arrow-up-right-from-square"></i> Link externo
-            </div>
-              
+              <div>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Link
+                externo
+              </div>
             </a>
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              Cerrar
+            </button>
           </div>
         </div>
       </div>

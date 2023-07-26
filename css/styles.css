@@ -12,10 +12,6 @@ body {
   background-color: rgb(43, 155, 189);
 }
 
-.customHeader {
-  height: 100vh;
-}
-
 .customShadow {
   text-shadow: 3px 3px 3px black;
 }
@@ -31,44 +27,39 @@ body {
   text-shadow: 3px 3px 3px black;
 }
 
-.backgroundModifier {
-  filter: brightness(30%);
-  height: 100%;
+.custom-bg-image {
+  background: linear-gradient(to right, #0000009c, #0000009c),
+    url('../img/main.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 83vh;
 }
 
-.aboutCustomHeight {
-  height: 88%;
-}
-
-.aboutChild {
-  padding-right: 5rem;
-  width: 75%;
-  height: 50%;
-}
-
-.textOverImage {
-  position: absolute;
-  top: 15rem;
-  right: 0;
-  bottom: 0;
-  left: 10%;
-  padding: 1rem;
+.custom-text-container {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0 20px;
 }
 
-.textOverImage h1 {
-  color: white;
-  text-align: center;
+.custom-text-container h1 {
+  font-size: 2.5rem;
   margin-bottom: 1rem;
+  color: white;
   text-shadow: 3px 3px 3px black;
 }
 
-.textOverImage p {
+.custom-text-container p {
   font-size: 1.5rem;
+  max-width: 100%;
+  text-align: center;
+  overflow-wrap: break-word;
   line-height: 1.5;
   font-weight: 500;
   color: white;
-  text-align: center;
   margin-bottom: 1rem;
   text-shadow: 3px 3px 3px black;
 }
@@ -79,16 +70,11 @@ body {
   font-weight: 500;
   color: white;
   text-align: center;
-
   text-shadow: 3px 3px 3px black;
 }
 
 .customProjectCardHeight {
   height: 22rem;
-}
-
-.customCardHeight {
-  height: 30rem;
 }
 
 .contactFont {
@@ -108,32 +94,22 @@ body {
   text-shadow: 3px 3px 3px black;
 }
 
-@media screen and (min-width: 992px) and (max-width: 1199px) {
-  .customHeader {
-    height: initial;
+@media screen and (max-width: 767px) {
+  .custom-bg-image {
+    height: 50vh;
+  }
+
+  .custom-text-container h1 {
+    font-size: 2.1rem;
+  }
+
+  .custom-text-container p {
+    font-size: 1.2rem;
   }
 }
 
-@media screen and (min-width: 1200px) and (max-width: 1400px) {
-  .customHeader {
-    height: initial;
-  }
-
-  .backgroundModifier img {
-    object-fit: cover;
-    object-position: center;
-    height: 83vh;
-  }
-}
-
-@media screen and (min-width: 1401px) {
-  .customHeader {
-    height: initial;
-  }
-
-  .backgroundModifier img {
-    object-fit: cover;
-    object-position: center;
-    height: 83vh;
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .custom-bg-image {
+    height: 61vh;
   }
 }
