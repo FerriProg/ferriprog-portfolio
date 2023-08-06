@@ -11,7 +11,7 @@ $connection = new connect();;# es un objeto de tipo conexion,
     <?php #leemos proyectos 1 por 1
         foreach($proyectos as $proyecto){ ?>
             <div class="col">
-                <div class="card border border-3 shadow  customCardHeight">
+                <div class="card border border-3 shadow customCardHeight">
                     <img class="card-img-top" style="object-fit:cover;" src="img/<?php echo $proyecto['image'];?>" alt="" width="300">
                     <div class="card-body overflow-auto">
                         <h5 class="card-title"><?php echo $proyecto['title'];?></h5>

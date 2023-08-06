@@ -62,7 +62,7 @@
 
 <div class="container-fluid">
         <div class="row d-flex justify-content-center">
-            <div class="col-md-10 col-sm-6">
+            <div class="col-md-10">
                 <a class="btn btn-success mb-3" href="./create.php">Nuevo proyecto</a>
             </div>
         </div>
@@ -91,7 +91,7 @@
                             <!--<td scope="row"><?php #echo $proyecto['id'];?></td> -->
                             <td><?php echo $proyecto['title'];?></td>
                             <td> <img width="200" src="../img/<?php echo $proyecto['image'];?>" alt="">  </td>
-                            <td class="texto"><?php echo $proyecto['description'];?></td>
+                            <td><?php echo $proyecto['description'];?></td>
                             <td class="text-center"><a class="btn btn-secondary btn-icon" href="<?php echo $proyecto['github'];?>" target="_blank"> <i class="fa-brands fa-github"></i> </a></td>
                             <td class="text-center"><a class="btn btn-dark btn-icon" href="<?php echo $proyecto['extlink'];?>" target="_blank"> <i class="fa-solid fa-arrow-up-right-from-square"></i> </a></td>
                             <td class="text-center"><a name="eliminar" id="eliminar" class="btn btn-danger btn-icon" href="?borrar=<?php echo $proyecto['id'];?>"><i class="fa-solid fa-trash"></i></a></td>

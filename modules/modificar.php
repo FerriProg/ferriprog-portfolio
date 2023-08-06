@@ -76,7 +76,7 @@ if($_POST){
 ?>
 <?php #leemos proyectos 1 por 1
   foreach($proyecto as $fila){ ?>
-    <div class="row d-flex justify-content-center mt-4 mb-5">
+    <div class="row d-flex justify-content-center mt-4 mb-5 container-fluid">
             <div class="col-md-10 col-sm-12">
                 <div class="card customColorBackground">
                     <div class="card-header">
@@ -95,7 +95,7 @@ if($_POST){
                                     <label for="archivo">Imagen del Proyecto - Se actualizara al grabar los cambios</label>
                                     <br>
                                     <div class="d-flex justify-content-center align-item-center">
-                                        <img class="img__modificar" src="../img/<?php echo $fila['image']; ?>">
+                                        <img class="img__modificar img-fluid" src="../img/<?php echo $fila['image']; ?>">
                                     </div>
                                 </div>
                                 <p>Seleccione un nueva Imagen si desea modificar</p>

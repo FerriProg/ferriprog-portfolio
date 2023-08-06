@@ -1,5 +1,5 @@
 <footer>
-      <h5 class="d-flex justify-content-center p-3 mb-0 footerFont">
+      <h5 class="d-flex justify-content-center p-3 mb-0 footerFont container-fluid">
         Sitio diseñado por Christian G. Ferreiro usando PHP.
       </h5>
     </footer>

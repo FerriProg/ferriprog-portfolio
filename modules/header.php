@@ -23,7 +23,7 @@
 </head>
 <body>
 
-    <header class="p-0 m-0 customHeader container-fluid">
+    <header class="p-0 m-0 customHeader">
       <nav class="navbar navbar-expand-lg navbar-light backgroundColor">
         <div class="container">
           
