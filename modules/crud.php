@@ -1,30 +1,30 @@
 <?php require_once '../constants.php' ?>
 <?php include '../controllers/isLogged.php'; ?>
-<?php $currentPage = 'galeria'; ?>
+<?php $currentPage = 'crud'; ?>
 <?php include 'header.php'; ?>
 
 <?php if($_POST){#si hay envio de datos, los inserto en la base de datos 
 
-    $nombre_proyecto = $_POST['title'];
-    $descripcion = $_POST['description'];
+    $projectTitle = $_POST['title'];
+    $description = $_POST['description'];
     #nombre de la imagen
-    $imagen = $_FILES['archivo']['name'];
+    $image = $_FILES['file']['name'];
     #tenemos que guardar la imagen en una carpeta 
-    $imagen_temporal=$_FILES['archivo']['tmp_name'];
+    $tempImage=$_FILES['file']['tmp_name'];
     #creamos una variable fecha para concatenar al nombre de la imagen, para que cada imagen sea distinta y no se pisen 
     $fecha = new DateTime();
-    $imagen= $fecha->getTimestamp()."_".$imagen;
-    move_uploaded_file($imagen_temporal,"../img/".$imagen);
+    $image= $fecha->getTimestamp()."_".$image;
+    move_uploaded_file($tempImage,"../img/".$image);
     $repo = $_POST['github'];
     $extlink = $_POST['extlink'];
    
    
     #creo una instancia(objeto) de la clase de conexion
     $conexion = new connect();
-    $sql="INSERT INTO `projects` (`id`, `title`, `image`, `description`, `github`, `extlink`) VALUES (NULL, '$nombre_proyecto' , '$imagen', '$descripcion', '$repo', '$extlink')";
+    $sql="INSERT INTO `projects` (`id`, `title`, `image`, `description`, `github`, `extlink`) VALUES (NULL, '$projectTitle' , '$image', '$description', '$repo', '$extlink')";
     $id_proyecto = $conexion->ejecutar($sql);
      #para que no intente borrar muchas veces
-     header("Location:galeria.php");
+     header("Location:crud.php");
      die();
 
  }
@@ -37,21 +37,21 @@
         $conexion = new connect();
 
         #recuperamos la imagen de la base antes de borrar 
-        $imagen = $conexion->consultar("select image FROM  `projects` where id=".$id);
+        $image = $conexion->consultar("select image FROM  `projects` where id=".$id);
         #la borramos de la carpeta 
-        unlink("../img/".$imagen[0]['image']);
+        unlink("../img/".$image[0]['image']);
 
         #borramos el registro de la base 
         $sql ="DELETE FROM `projects` WHERE `projects`.`id` =".$id; 
         $id_proyecto = $conexion->ejecutar($sql);
          #para que no intente borrar muchas veces
-         header("Location:galeria.php");
+         header("Location:crud.php");
          die();
  }
 
-   if(isset($_GET['modificar'])){
-        $id = $_GET['modificar'];
-        header("Location:modificar.php?modificar=".$id);
+   if(isset($_GET['edit'])){
+        $id = $_GET['edit'];
+        header("Location:edit.php?edit=".$id);
         die();
     }
  } 
@@ -95,7 +95,7 @@
                             <td class="text-center"><a class="btn btn-secondary btn-icon" href="<?php echo $proyecto['github'];?>" target="_blank"> <i class="fa-brands fa-github"></i> </a></td>
                             <td class="text-center"><a class="btn btn-dark btn-icon" href="<?php echo $proyecto['extlink'];?>" target="_blank"> <i class="fa-solid fa-arrow-up-right-from-square"></i> </a></td>
                             <td class="text-center"><a name="eliminar" id="eliminar" class="btn btn-danger btn-icon" href="?borrar=<?php echo $proyecto['id'];?>"><i class="fa-solid fa-trash"></i></a></td>
-                            <td class="text-center"><a name="modificar" id="modificar" class="btn btn-warning btn-icon" href="?modificar=<?php echo $proyecto['id'];?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                            <td class="text-center"><a name="edit" id="edit" class="btn btn-warning btn-icon" href="?edit=<?php echo $proyecto['id'];?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
                         </tr>
 
                         <?php #cerramos la llave del foreach

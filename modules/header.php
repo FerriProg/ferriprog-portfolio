@@ -49,7 +49,7 @@
                 >
               </li>
               <li class="nav-item d-flex justify-content-center">
-                <a class="nav-link navLink2 text-center <?php echo ($currentPage === 'galeria') ? 'active disabled' : ''; ?>" href="<?php echo ROOTPATH . '/modules/galeria.php'?>"
+                <a class="nav-link navLink2 text-center <?php echo ($currentPage === 'crud') ? 'active disabled' : ''; ?>" href="<?php echo ROOTPATH . '/modules/crud.php'?>"
                   >Administrar proyectos</a
                 >
               </li>

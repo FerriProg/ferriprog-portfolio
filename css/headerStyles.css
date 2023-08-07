@@ -52,7 +52,7 @@ label {
 .color {
   background-color: rgb(189, 189, 189) !important;
 }
-.img__modificar {
+.img__edit {
   width: 400px !important;
 }
 
@@ -75,7 +75,7 @@ label {
     font-size: 0.8em !important;
   }
 
-  .img__modificar {
+  .img__edit {
     width: 300px !important;
   }
 }

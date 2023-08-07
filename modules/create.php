@@ -14,20 +14,20 @@
                 </div>
                 <div class="card-body">
                     <!--para recepcionar archivos uso enctype-->
-                    <form action="galeria.php" method="post" enctype="multipart/form-data">
+                    <form action="crud.php" method="post" enctype="multipart/form-data">
                         <div>
-                            <label for="nombre">Nombre del Proyecto</label>
-                            <input required class="form-control" type="text" name="title" id="nombre">
+                            <label for="title">Nombre del Proyecto</label>
+                            <input required class="form-control" type="text" name="title" id="title">
                         </div>
                     
                         <div>
-                            <label for="archivo">Imagen del Proyecto</label>
-                            <input required class="form-control" type="file" name ="archivo" id="archivo">
+                            <label for="file">Imagen del Proyecto</label>
+                            <input required class="form-control" type="file" name ="file" id="file">
                         </div>
                         <br>
                         <div>
-                            <label for="descripcion">Descripción del Proyecto</label>
-                            <textarea required class="form-control" name="description" id="descripcion" cols="30" rows="4"></textarea>
+                            <label for="description">Descripción del Proyecto</label>
+                            <textarea required class="form-control" name="description" id="description" cols="30" rows="4"></textarea>
                         </div>
                         <br>
                         <div>
@@ -35,7 +35,7 @@
                             <input required class="form-control" type="text" name="github" id="github"></input>
                         </div>
                         <div>
-                            <label for="descripcion">Link externo (deploy, video, etc)</label>
+                            <label for="description">Link externo (deploy, video, etc)</label>
                             <input required class="form-control" type="text" name="extlink" id="extlink"></input>
                         </div>
                         <div>
