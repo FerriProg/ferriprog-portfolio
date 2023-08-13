@@ -1,6 +1,6 @@
 <?php include './controllers/connect.php';
 $connection = new connect();
-$proyectos= $connection->consultar("SELECT * FROM `projects`"); ?>
+$proyectos= $connection->consult("SELECT * FROM `projects`"); ?>
 <!DOCTYPE html>
 <html lang="es">
   <head>

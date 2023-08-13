@@ -3,7 +3,7 @@
 <?php $currentPage = 'index_admin'; ?>
 <?php include './modules/header.php';
 $connection = new connect();;# es un objeto de tipo conexion,
-      $proyectos= $connection->consultar("SELECT * FROM `projects`"); ?>
+      $proyectos= $connection->consult("SELECT * FROM `projects`"); ?>
 
 <main>
 <div class ="container customColorBackground pb-5">

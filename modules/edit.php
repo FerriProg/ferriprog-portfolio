@@ -7,9 +7,9 @@ if($_GET){
         $id = $_GET['edit'];
        
         $_SESSION['id_proyecto'] = $id;
-        #vamos a consultar para llenar la tabla 
+        #vamos a consult para llenar la tabla 
         $conexion = new connect();
-        $proyecto= $conexion->consultar("SELECT * FROM `projects` where id=".$id);
+        $proyecto= $conexion->consult("SELECT * FROM `projects` where id=".$id);
      
     }
 }
@@ -20,7 +20,7 @@ if($_POST){
     $description = $_POST['description'];
     #debemos recuperar la imagen actual y borrarla del servidor para lugar pisar con la nueva imagen en el server y en la base de datos
     #recuperamos la imagen de la base antes de borrar 
-    $image = $conexion->consultar("select image FROM  `projects` where id=".$id);
+    $image = $conexion->consult("select image FROM  `projects` where id=".$id);
     #pregunto si el usuario cargó una imagen nueva
     if(!empty($_FILES['file']['name'])) {
         
@@ -32,7 +32,7 @@ if($_POST){
         #die();
         ###########################################################################################
         #recuperamos la imagen de la base antes de borrar 
-        $image = $conexion->consultar("select image FROM  `projects` where id=".$id);
+        $image = $conexion->consult("select image FROM  `projects` where id=".$id);
         #la borramos de la carpeta 
         unlink("../img/".$image[0]['image']);
         #nombre de la imagen

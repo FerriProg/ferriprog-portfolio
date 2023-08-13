@@ -37,7 +37,7 @@
         $conexion = new connect();
 
         #recuperamos la imagen de la base antes de borrar 
-        $image = $conexion->consultar("select image FROM  `projects` where id=".$id);
+        $image = $conexion->consult("select image FROM  `projects` where id=".$id);
         #la borramos de la carpeta 
         unlink("../img/".$image[0]['image']);
 
@@ -55,9 +55,9 @@
         die();
     }
  } 
-  #vamos a consultar para llenar la tabla 
+  #vamos a consult para llenar la tabla 
   $conexion = new connect();
-  $proyectos= $conexion->consultar("SELECT * FROM `projects`");
+  $proyectos= $conexion->consult("SELECT * FROM `projects`");
 ?> 
 
 <div class="container-fluid">

@@ -25,7 +25,7 @@
         #esto nos da el valor de id insertado
         return $this->conexion->lastInsertId();
     }
-    public function consultar($sql){ # select 
+    public function consult($sql){ # select 
         #ejecuta la consulta y nos devuelve la info de la base
         $sentencia = $this->conexion->prepare($sql);
         $sentencia->execute();
